@@ -1,0 +1,25 @@
+sendEmail:
+  handler: src/lambdas/email/send.handler
+  events:
+    - http:
+        path: /send/email
+        method: POST
+        caching:
+          enabled: false
+        cors:
+          origin: '*'
+          headers:
+            - '*'
+
+addSubscribers:
+  handler: src/lambdas/mailbox/addSubscriber.handler
+  events:
+    - http:
+        path: /mailbox/subscriber
+        method: POST
+        caching:
+          enabled: false
+        cors:
+          origin: '*'
+          headers:
+            - '*'

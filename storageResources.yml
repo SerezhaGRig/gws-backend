@@ -1,0 +1,17 @@
+Resources:
+  MailboxSubscribersTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: ${self:custom.dynamoDB.deletionPolicy.${self:provider.stage}, self:custom.dynamoDB.deletionPolicy.default}
+    Properties:
+      TableName: mailbox-subscribers-table-${self:provider.stage}
+      AttributeDefinitions:
+        - AttributeName: 'itemId'
+          AttributeType: 'S'
+      KeySchema:
+        - AttributeName: 'itemId'
+          KeyType: 'HASH'
+      BillingMode: 'PAY_PER_REQUEST'
+      Tags:
+        - Key: 'STAGE'
+          Value: ${self:provider.stage}
+

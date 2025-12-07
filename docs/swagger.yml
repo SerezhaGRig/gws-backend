@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  title: Data API
+  version: 1.0.0
+
+servers:
+  - url: https://kkmzp5pfe3.execute-api.us-east-1.amazonaws.com/test
+
+paths:
+  /send/email:
+    post:
+      summary: Send email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  type: string
+      responses:
+        '200':
+          description: successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: success
+
+  /mailbox/subscriber:
+    post:
+      summary: Subscribe to mailbox
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email]
+              properties:
+                email:
+                  type: string
+      responses:
+        '200':
+          description: successfully
+          content:
+            application/json:
+              schema:
+                type: object
