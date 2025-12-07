@@ -4,7 +4,7 @@ info:
   version: 1.0.0
 
 servers:
-  - url: https://kkmzp5pfe3.execute-api.us-east-1.amazonaws.com/test
+  - url: https://ytvuiz5iz9.execute-api.us-east-1.amazonaws.com/dev
 
 paths:
   /send/email:
