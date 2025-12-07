@@ -16,11 +16,9 @@ paths:
           application/json:
             schema:
               type: object
-              required: [data, itemId]
+              required: [data]
               properties:
-                itemId:
-                  type: string
-                email:
+                data:
                   type: string
       responses:
         '200':
@@ -46,8 +44,10 @@ paths:
           application/json:
             schema:
               type: object
-              required: [email]
+              required: [email,itemId]
               properties:
+                itemId:
+                  type: string
                 email:
                   type: string
       responses:
