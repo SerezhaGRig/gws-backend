@@ -1,18 +1,25 @@
-import sgMail from "@sendgrid/mail";
+import * as Brevo from "@getbrevo/brevo";
 
-sgMail.setApiKey(process.env.EMAIL_KEY);
+const apiInstance = new Brevo.TransactionalEmailsApi();
+apiInstance.setApiKey(
+  Brevo.TransactionalEmailsApiApiKeys.apiKey,
+  process.env.EMAIL_KEY,
+);
 
-const SENDER_EMAIL = "info@mail.garagewebsolutions.com";
-const TO_EMAILS = ["serojjan2000@gmail.com", "vahagnaghayan@gmail.com"];
+const SENDER_EMAIL = "gws@info.garagewebsolutions.com";
+const TO_EMAILS = [
+  { email: "vahagnaghayan@gmail.com", name: "GWS" },
+  { email: "serojjan2000@gmail.com", name: "GWS" },
+];
 
 export const buildsSendEmail = () => async (data: string) => {
-  const text = data;
-  const msg = {
+  const sendSmtpEmail = {
     to: TO_EMAILS,
-    from: SENDER_EMAIL,
+    sender: { email: SENDER_EMAIL, name: "GWS website" },
     subject: "GWS website",
-    text,
+    htmlContent: data,
   };
 
-  await sgMail.send(msg);
+  // Send email
+  await apiInstance.sendTransacEmail(sendSmtpEmail);
 };
